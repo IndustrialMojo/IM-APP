@@ -1,7 +1,7 @@
 package com.industrialmojo.service;
 
-import com.industrialmojo.mongodb.CustomerMongoEntity;
-import com.industrialmojo.mongodb.CustomerMongoRepository;
+import com.industrialmojo.mongodb.entity.CustomerEntity;
+import com.industrialmojo.mongodb.CustomerRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -9,9 +9,9 @@ import java.util.List;
 @Service
 public class LoadCustomersService {
 
-    private final CustomerMongoRepository repository;
+    private final CustomerRepository repository;
 
-    public LoadCustomersService(CustomerMongoRepository repository) {
+    public LoadCustomersService(CustomerRepository repository) {
         this.repository = repository;
     }
 
@@ -20,18 +20,18 @@ public class LoadCustomersService {
         repository.deleteAll();
 
         // save a couple of customers
-        repository.save(new CustomerMongoEntity("Alice", "Smith"));
-        repository.save(new CustomerMongoEntity("Bob", "Smith"));
+        repository.save(new CustomerEntity("Alice", "Smith"));
+        repository.save(new CustomerEntity("Bob", "Smith"));
     }
 
-    public List<CustomerMongoEntity> findAllCustomers() {
+    public List<CustomerEntity> findAllCustomers() {
 
-        List<CustomerMongoEntity> customerList = repository.findAll();
+        List<CustomerEntity> customerList = repository.findAll();
 
         // fetch all customers
         System.out.println("Customers found with findAll():");
         System.out.println("-------------------------------");
-        for (CustomerMongoEntity customer : customerList) {
+        for (CustomerEntity customer : customerList) {
             System.out.println(customer);
         }
         System.out.println();
@@ -39,26 +39,26 @@ public class LoadCustomersService {
         return customerList;
     }
 
-    public List<CustomerMongoEntity> findCustomerByFirstName(String firstName) {
+    public List<CustomerEntity> findCustomerByFirstName(String firstName) {
 
-        List<CustomerMongoEntity> customerList = repository.findByFirstName(firstName);
+        List<CustomerEntity> customerList = repository.findByFirstName(firstName);
 
         // fetch an individual customer
         System.out.println("Customers found with findByFirstName('" + firstName + "'):");
         System.out.println("--------------------------------");
-        for (CustomerMongoEntity entity : customerList) {
+        for (CustomerEntity entity : customerList) {
             System.out.println(entity);
         }
         return customerList;
     }
 
-    public List<CustomerMongoEntity> findCustomersByLastName(String lastName) {
+    public List<CustomerEntity> findCustomersByLastName(String lastName) {
 
-        List<CustomerMongoEntity> customerList = repository.findByLastName(lastName);
+        List<CustomerEntity> customerList = repository.findByLastName(lastName);
 
         System.out.println("Customers found with findByLastName('" + lastName + "'):");
         System.out.println("--------------------------------");
-        for (CustomerMongoEntity entity : customerList) {
+        for (CustomerEntity entity : customerList) {
             System.out.println(entity);
         }
         return customerList;

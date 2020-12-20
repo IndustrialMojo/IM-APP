@@ -1,7 +1,7 @@
 package com.industrialmojo.controller;
 
 import com.industrialmojo.dto.Customer;
-import com.industrialmojo.mongodb.CustomerMongoEntity;
+import com.industrialmojo.mongodb.entity.CustomerEntity;
 import com.industrialmojo.service.GetCustomerAllService;
 import com.industrialmojo.service.GetCustomerService;
 import com.industrialmojo.service.LoadCustomersService;
@@ -49,17 +49,17 @@ public class CustomerController {
 
     @GetMapping("/customer/findByFirst/{firstName}")
     public @ResponseBody
-    ResponseEntity<List<CustomerMongoEntity>>
+    ResponseEntity<List<CustomerEntity>>
     findByFirstName(@PathVariable String firstName) {
-        List<CustomerMongoEntity> customers = loadCustomersService.findCustomerByFirstName(firstName);
-        return new ResponseEntity<List<CustomerMongoEntity>>(customers, HttpStatus.OK);
+        List<CustomerEntity> customers = loadCustomersService.findCustomerByFirstName(firstName);
+        return new ResponseEntity<List<CustomerEntity>>(customers, HttpStatus.OK);
     }
 
     @GetMapping("/customer/findByLast/{firstName}")
     public @ResponseBody
-    ResponseEntity<List<CustomerMongoEntity>>
+    ResponseEntity<List<CustomerEntity>>
     findByLastName(@PathVariable String firstName) {
-        List<CustomerMongoEntity> customers = loadCustomersService.findCustomersByLastName(firstName);
-        return new ResponseEntity<List<CustomerMongoEntity>>(customers, HttpStatus.OK);
+        List<CustomerEntity> customers = loadCustomersService.findCustomersByLastName(firstName);
+        return new ResponseEntity<List<CustomerEntity>>(customers, HttpStatus.OK);
     }
 }

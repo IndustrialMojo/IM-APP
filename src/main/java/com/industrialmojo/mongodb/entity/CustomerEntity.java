@@ -1,8 +1,8 @@
-package com.industrialmojo.mongodb;
+package com.industrialmojo.mongodb.entity;
 
 import org.springframework.data.annotation.Id;
 
-public class CustomerMongoEntity {
+public class CustomerEntity {
 
     @Id
     private String id;
@@ -10,10 +10,10 @@ public class CustomerMongoEntity {
     private String firstName;
     private String lastName;
 
-    public CustomerMongoEntity() {
+    public CustomerEntity() {
     }
 
-    public CustomerMongoEntity(String firstName, String lastName) {
+    public CustomerEntity(String firstName, String lastName) {
         this.firstName = firstName;
         this.lastName = lastName;
     }
